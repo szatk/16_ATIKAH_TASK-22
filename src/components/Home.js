@@ -27,7 +27,7 @@ class Home extends Component {
     this.setState((state) => {
       const anggotaFetched = this.props.anggota.data.anggota.map((a) => ({
         ...a,
-        jenisKelamin: a.jenis_kelamin
+        jenisKelamin: a.jeniskelamin
       }))
       return { data: [...state.data, ...anggotaFetched] }
     })
@@ -50,12 +50,12 @@ class Home extends Component {
   }
 
   tambahPengunjung = async (newUser) => {
-    const { nama, umur, jenisKelamin: jenis_kelamin } = newUser
-    const newData = { nama, umur, jenis_kelamin }
+    const { nama, umur, jenisKelamin: jeniskelamin } = newUser
+    const newData = { nama, umur, jeniskelamin }
     try {
       await this.props.insertOneAnggota({ variables: { data: newData } })
       const result = this.props.insertOneResult.data.insert_anggota_one
-      const user = { ...result, jenisKelamin: result.jenis_kelamin }
+      const user = { ...result, jeniskelamin: result.jeniskelamin }
 
       this.setState({
         data: [...this.state.data, user]
@@ -84,15 +84,15 @@ class Home extends Component {
 
   editPengunjung = async (e) => {
     e.preventDefault()
-    const { id, jenisKelamin: jenis_kelamin, nama, umur } = this.state.edit
+    const { id, jenisKelamin: jeniskelamin, nama, umur } = this.state.edit
 
     try {
       await this.props.updateAnggotaById({
-        variables: { id, jenis_kelamin, nama, umur }
+        variables: { id, jeniskelamin, nama, umur }
       })
 
       const result = this.props.updateAnggota.data.update_anggota_by_pk
-      const user = { ...result, jenisKelamin: result.jenis_kelamin }
+      const user = { ...result, jenisKelamin: result.jeniskelamin }
 
       this.setState((state, props) => {
         const updatedUser = state.data.map((p) => {

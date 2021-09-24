@@ -20,7 +20,7 @@ export const GET_ANGGOTA = gql`
       nama
       umur
       id
-      jenis_kelamin
+      jeniskelamin
       keterangans {
         id
         id_anggota
@@ -37,7 +37,7 @@ export const GET_ANGGOTA_BY_ID = gql`
   query MyQuery($id: Int!) {
     anggota_by_pk(id: $id) {
       id
-      jenis_kelamin
+      jeniskelamin
       nama
       umur
       keterangans {
@@ -54,7 +54,7 @@ export const GET_ANGGOTA_BY_ID = gql`
 export const INSERT_ONE_ANGGOTA = gql`
   mutation ADD_ANGGOTA($data: anggota_insert_input!) {
     insert_anggota_one(object: $data) {
-      jenis_kelamin
+      jeniskelamin
       nama
       umur
       keterangans {
@@ -74,7 +74,7 @@ export const DELETE_ANGGOTA_BY_ID = gql`
     delete_anggota_by_pk(id: $id) {
       id
       nama
-      jenis_kelamin
+      jeniskelamin
       umur
       keterangans {
         id
@@ -91,16 +91,16 @@ export const UPDATE_ANGGOTA = gql`
     $id: Int!
     $nama: String!
     $umur: Int!
-    $jenis_kelamin: String!
+    $jeniskelamin: String!
   ) {
     update_anggota_by_pk(
       pk_columns: { id: $id }
-      _set: { nama: $nama, umur: $umur, jenis_kelamin: $jenis_kelamin }
+      _set: { nama: $nama, umur: $umur, jeniskelamin: $jeniskelamin }
     ) {
       id
       nama
       umur
-      jenis_kelamin
+      jeniskelamin
       keterangans {
         id
         id_anggota
